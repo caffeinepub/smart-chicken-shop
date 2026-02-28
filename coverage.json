@@ -1,0 +1,58 @@
+{
+  "kind": "coverage_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-28T06:42:42.427Z",
+  "sources": {
+    "buildRequest": true,
+    "implementationPlan": true
+  },
+  "requirements": {
+    "total": 2,
+    "implemented": 2,
+    "items": [
+      {
+        "id": "REQ-17",
+        "summary": "Verify and ensure the PDF export utility in frontend/src/utils/pdfExport.ts generates receipts that include all required fields: unique barcode-style invoice number, customer name and ID, weight (kg), rate per kg, total price, payment made, payment type, remaining balance or CLEAR status, date and time, and shop name. The receipt download button must be accessible to both Admin and Staff roles in TransactionList and ReceiptView components.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/utils/pdfExport.ts",
+          "frontend/src/components/TransactionList.tsx",
+          "frontend/src/components/ReceiptView.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/utils/pdfExport.ts",
+          "frontend/src/components/TransactionList.tsx",
+          "frontend/src/components/ReceiptView.tsx"
+        ]
+      },
+      {
+        "id": "REQ-18",
+        "summary": "Add a PDF export button to the Admin Dashboard reports section so Admin can download the currently filtered (daily, weekly, or monthly) transaction summary and customer balance list as a formatted PDF document directly from the frontend, without any backend changes.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/utils/reportPdfExport.ts",
+          "frontend/src/components/AdminDashboard.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/utils/reportPdfExport.ts",
+          "frontend/src/components/AdminDashboard.tsx"
+        ]
+      }
+    ]
+  },
+  "changedFiles": [
+    "build-request.json",
+    "feature_evidence.json",
+    "frontend-file-summaries.txt",
+    "frontend-implementation-plan.json",
+    "frontend/src/components/AdminDashboard.tsx",
+    "frontend/src/components/ReceiptView.tsx",
+    "frontend/src/components/TransactionList.tsx",
+    "frontend/src/utils/pdfExport.ts",
+    "frontend/src/utils/reportPdfExport.ts",
+    "project_state.json",
+    "scratch/component-selection.json",
+    "spec.md",
+    "spec_vs_diff_report.json"
+  ]
+}

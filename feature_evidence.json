@@ -1,0 +1,46 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-verify-and-ensure-the-pdf-export-utility-in-frontend-src-utils-pdfexport-ts-generates-receipts-that-include-all-required-fields-unique-barcode-style-invoice-number-customer-name-and-id-weight-kg-rate-per-kg-total-price-payment-made-payment-type-remaining-balance-or-clear-status-date-and-time-and-shop-name-the-receipt-download-button-must-be-accessible-to-both-admin-and-staff-roles-in-transactionlist-and-receiptview-components",
+      "featureTitle": "Verify and ensure the PDF export utility in frontend/src/utils/pdfExport.ts generates receipts that include all required fields: unique barcode-style invoice number, customer name and ID, weight (kg), rate per kg, total price, payment made, payment type, remaining balance or CLEAR status, date and time, and shop name. The receipt download button must be accessible to both Admin and Staff roles in TransactionList and ReceiptView components.",
+      "files": [
+        "frontend/src/components/ReceiptView.tsx",
+        "frontend/src/components/TransactionList.tsx",
+        "frontend/src/utils/pdfExport.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-17"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-a-pdf-export-button-to-the-admin-dashboard-reports-section-so-admin-can-download-the-currently-filtered-daily-weekly-or-monthly-transaction-summary-and-customer-balance-list-as-a-formatted-pdf-document-directly-from-the-frontend-without-any-backend-changes",
+      "featureTitle": "Add a PDF export button to the Admin Dashboard reports section so Admin can download the currently filtered (daily, weekly, or monthly) transaction summary and customer balance list as a formatted PDF document directly from the frontend, without any backend changes.",
+      "files": [
+        "frontend/src/components/AdminDashboard.tsx",
+        "frontend/src/utils/reportPdfExport.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-18"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

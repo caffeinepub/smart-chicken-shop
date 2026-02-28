@@ -1,0 +1,238 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 9,
+  "summary": "Smart Chicken Shop App – a mobile app (Android primary, iOS optional) for managing a chicken shop with two authenticated user roles: Admin (shop owner) and Staff/Cashier (both require secure login). Customers do NOT need to sign in — they are identified by phone number and receive automatic SMS/WhatsApp/in-app notifications. Features include smart billing calculations, customer balance tracking (CLEAR/PENDING), automatic notifications, admin dashboard with sales reports, PDF/Excel export, multiple payment types, digital receipts with barcode invoice numbers, and cloud database. Green & white modern UI.",
+  "architectural_notes": [
+    "Mobile app targeting Android + iOS",
+    "Green & white clean modern UI theme",
+    "Cloud database required with offline sync capability",
+    "Three distinct user roles with different permission levels (Admin > Staff > Customer)",
+    "Customers require no login — identified by phone number only; only Admin and Staff have authenticated sessions"
+  ],
+  "known_issues": [],
+  "isFixRequest": false,
+  "existing_features": [
+    {
+      "id": "feature-implement-a-role-based-authentication-system-with-three-roles-admin-shop-owner-staff-cashier-and-customer-admin-has-full-access-staff-can-add-purchases-accept-payments-and-generate-receipts-but-cannot-delete-financial-history-customers-can-only-view-their-own-history-balance-and-receipts-use-internet-identity-for-login-and-store-role-assignments-in-the-backend",
+      "title": "Implement a role-based authentication system with three roles: Admin (shop owner), Staff (cashier), and Customer. Admin has full access. Staff can add purchases, accept payments, and generate receipts but cannot delete financial history. Customers can only view their own history, balance, and receipts. Use Internet Identity for login and store role assignments in the backend.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-a-customer-account-system-each-customer-has-a-unique-customer-id-name-phone-number-and-address-admins-and-staff-can-register-new-customers-the-system-tracks-each-customer-s-running-balance-and-full-transaction-history",
+      "title": "Implement a Customer Account System. Each customer has a unique Customer ID, name, phone number, and address. Admins and Staff can register new customers. The system tracks each customer's running balance and full transaction history.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-the-smart-calculation-system-for-transactions-when-staff-or-admin-creates-a-purchase-entry-with-weight-kg-rate-per-kg-and-payment-amount-the-backend-automatically-computes-total-price-weight-rate-new-balance-previous-balance-total-payment-display-clear-badge-if-balance-equals-0-pending-badge-if-balance-is-greater-than-0",
+      "title": "Implement the Smart Calculation System for transactions. When Staff or Admin creates a purchase entry with weight (kg), rate per kg, and payment amount, the backend automatically computes: Total Price = Weight × Rate, New Balance = Previous Balance + Total − Payment. Display 'CLEAR' badge if balance equals 0, 'PENDING' badge if balance is greater than 0.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-an-in-app-notification-system-after-every-purchase-the-customer-associated-with-the-transaction-receives-an-in-app-notification-containing-order-id-weight-purchased-kg-rate-per-kg-total-amount-payment-made-remaining-balance-or-clear-confirmation-date-time-and-shop-name-display-a-notification-bell-with-unread-count-in-the-customer-view-note-sms-and-whatsapp-delivery-are-out-of-scope-per-platform-limitations-implement-in-app-only",
+      "title": "Implement an in-app notification system. After every purchase, the customer associated with the transaction receives an in-app notification containing: Order ID, weight purchased (kg), rate per kg, total amount, payment made, remaining balance or 'CLEAR' confirmation, date & time, and shop name. Display a notification bell with unread count in the customer view. Note: SMS and WhatsApp delivery are out of scope per platform limitations; implement in-app only.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-an-admin-dashboard-showing-total-sales-for-today-total-unpaid-pending-balances-across-all-customers-total-payments-received-and-a-paginated-customer-list-showing-each-customer-s-name-balance-and-clear-pending-status-include-daily-weekly-and-monthly-summary-views-toggled-by-a-filter-selector",
+      "title": "Build an Admin Dashboard showing: total sales for today, total unpaid (pending) balances across all customers, total payments received, and a paginated customer list showing each customer's name, balance, and CLEAR/PENDING status. Include daily, weekly, and monthly summary views toggled by a filter selector.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-transaction-management-for-admin-and-staff-the-new-transaction-form-must-support-four-payment-types-cash-online-payment-partial-payment-and-full-clear-admin-can-edit-or-delete-any-transaction-staff-can-add-transactions-but-cannot-delete-financial-history",
+      "title": "Implement transaction management for Admin and Staff. The new transaction form must support four payment types: Cash, Online Payment, Partial Payment, and Full Clear. Admin can edit or delete any transaction. Staff can add transactions but cannot delete financial history.",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-an-auto-generated-digital-receipt-for-each-transaction-each-receipt-must-include-a-unique-barcode-style-invoice-number-auto-generated-customer-name-and-id-weight-rate-per-kg-total-price-payment-made-payment-type-remaining-balance-or-clear-status-date-time-and-shop-name-the-receipt-must-be-viewable-in-app-and-downloadable-as-a-pdf-from-the-frontend",
+      "title": "Implement an auto-generated digital receipt for each transaction. Each receipt must include: a unique barcode-style invoice number (auto-generated), customer name and ID, weight, rate per kg, total price, payment made, payment type, remaining balance or CLEAR status, date & time, and shop name. The receipt must be viewable in-app and downloadable as a PDF from the frontend.",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-a-pending-balance-reminder-feature-admin-can-view-a-list-of-all-customers-with-pending-balances-a-send-reminder-button-on-each-pending-customer-entry-creates-an-in-app-reminder-notification-for-that-customer-admin-can-also-trigger-bulk-reminders-for-all-pending-customers-at-once",
+      "title": "Implement a pending balance reminder feature. Admin can view a list of all customers with PENDING balances. A 'Send Reminder' button on each pending customer entry creates an in-app reminder notification for that customer. Admin can also trigger bulk reminders for all pending customers at once.",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-a-green-and-white-clean-modern-ui-theme-use-deep-green-as-the-primary-brand-color-white-as-the-background-and-light-green-accents-apply-a-clean-sans-serif-typography-system-with-card-based-layouts-for-transactions-and-customer-lists-use-status-badges-green-clear-amber-pending-consistently-across-all-views-ensure-the-layout-is-mobile-first-and-responsive",
+      "title": "Implement a green and white clean modern UI theme. Use deep green as the primary brand color, white as the background, and light green accents. Apply a clean sans-serif typography system with card-based layouts for transactions and customer lists. Use status badges (green 'CLEAR', amber 'PENDING') consistently across all views. Ensure the layout is mobile-first and responsive.",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-generate-a-chicken-shop-logo-image-and-a-chicken-shop-app-banner-for-use-in-the-app-header-and-login-screen",
+      "title": "Generate a chicken shop logo image and a chicken shop app banner for use in the app header and login screen.",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-an-admin-only-setting-to-configure-and-save-the-current-rate-per-kg-for-chicken-the-rate-should-be-stored-in-the-backend-and-auto-populated-as-the-default-rate-in-the-transaction-form-when-staff-or-admin-creates-a-new-purchase-entry",
+      "title": "Add an Admin-only setting to configure and save the current rate per kg for chicken. The rate should be stored in the backend and auto-populated as the default rate in the transaction form when Staff or Admin creates a new purchase entry.",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-csv-excel-export-feature-to-the-admin-dashboard-reports-section-admin-can-export-the-currently-filtered-daily-weekly-or-monthly-transaction-summary-and-customer-balance-list-as-a-downloadable-csv-file-from-the-frontend-without-requiring-any-backend-changes",
+      "title": "Add a CSV/Excel export feature to the Admin Dashboard reports section. Admin can export the currently filtered (daily, weekly, or monthly) transaction summary and customer balance list as a downloadable CSV file from the frontend without requiring any backend changes.",
+      "reqIds": [
+        "REQ-12"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-a-customer-facing-public-view-accessible-without-login-staff-or-admin-can-share-a-unique-url-based-on-customer-id-or-phone-number-with-a-customer-when-opened-the-page-displays-the-customer-s-name-current-balance-clear-pending-status-full-transaction-history-and-any-unread-notifications-without-requiring-internet-identity-login",
+      "title": "Implement a customer-facing public view accessible without login. Staff or Admin can share a unique URL (based on customer ID or phone number) with a customer. When opened, the page displays the customer's name, current balance (CLEAR/PENDING status), full transaction history, and any unread notifications — without requiring Internet Identity login.",
+      "reqIds": [
+        "REQ-13"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-login-page-and-any-role-description-ui-to-clearly-state-that-customers-do-not-need-to-sign-in-or-create-a-password-customers-are-identified-by-phone-number-only-only-admin-and-staff-require-secure-login-remove-or-replace-any-customer-login-instructions-with-a-message-explaining-that-customers-receive-their-balance-and-receipt-information-via-the-shop-directly",
+      "title": "Update the Login page and any role description UI to clearly state that customers do NOT need to sign in or create a password. Customers are identified by phone number only. Only Admin and Staff require secure login. Remove or replace any customer login instructions with a message explaining that customers receive their balance and receipt information via the shop directly.",
+      "reqIds": [
+        "REQ-14"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-all-in-app-copy-tooltips-and-notification-related-ui-text-to-clarify-that-sms-and-whatsapp-notifications-are-out-of-scope-for-this-platform-replace-any-references-to-sms-whatsapp-or-send-to-phone-with-in-app-notification-in-the-pendingcustomerslist-component-relabel-whatsapp-sms-reminder-buttons-to-send-in-app-reminder-to-accurately-reflect-the-delivery-method",
+      "title": "Update all in-app copy, tooltips, and notification-related UI text to clarify that SMS and WhatsApp notifications are out of scope for this platform. Replace any references to 'SMS', 'WhatsApp', or 'send to phone' with 'in-app notification'. In the PendingCustomersList component, relabel WhatsApp/SMS reminder buttons to 'Send In-App Reminder' to accurately reflect the delivery method.",
+      "reqIds": [
+        "REQ-15"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-verify-and-ensure-the-pdf-export-utility-in-frontend-src-utils-pdfexport-ts-generates-receipts-that-include-all-required-fields-unique-barcode-style-invoice-number-customer-name-and-id-weight-kg-rate-per-kg-total-price-payment-made-payment-type-remaining-balance-or-clear-status-date-and-time-and-shop-name-the-receipt-download-button-must-be-accessible-to-both-admin-and-staff-roles-in-transactionlist-and-receiptview-components",
+      "title": "Verify and ensure the PDF export utility in frontend/src/utils/pdfExport.ts generates receipts that include all required fields: unique barcode-style invoice number, customer name and ID, weight (kg), rate per kg, total price, payment made, payment type, remaining balance or CLEAR status, date and time, and shop name. The receipt download button must be accessible to both Admin and Staff roles in TransactionList and ReceiptView components.",
+      "reqIds": [
+        "REQ-17"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-pdf-export-button-to-the-admin-dashboard-reports-section-so-admin-can-download-the-currently-filtered-daily-weekly-or-monthly-transaction-summary-and-customer-balance-list-as-a-formatted-pdf-document-directly-from-the-frontend-without-any-backend-changes",
+      "title": "Add a PDF export button to the Admin Dashboard reports section so Admin can download the currently filtered (daily, weekly, or monthly) transaction summary and customer balance list as a formatted PDF document directly from the frontend, without any backend changes.",
+      "reqIds": [
+        "REQ-18"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Three user roles: Admin (full access), Staff/Cashier (add purchases, payments, receipts, no delete history), Customer (view history, balance, receipts)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Customer account system: register with name/phone/address, unique customer ID, balance tracking, transaction history",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Smart calculation system: Total Price = Weight × Rate, New Balance = Previous Balance + Total − Payment, show CLEAR or PENDING status",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Automatic notifications after every purchase (Order ID, weight, rate, total, payment, balance, date/time, shop name) via SMS, WhatsApp, and in-app",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Admin dashboard: today's sales, unpaid balances, payments received, customer list with balance status, daily/weekly/monthly reports, export to PDF & Excel",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Multiple payment types: Cash, Online Payment, Partial Payment, Full Clear",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-7",
+      "summary": "Auto receipt generator with barcode invoice number (digital proof)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-8",
+      "summary": "Daily reminder notifications for customers with unpaid/pending balances",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-9",
+      "summary": "Cloud database with offline sync support",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-10",
+      "summary": "Customers identified by phone number only — no login required. Admin and Staff require secure login.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-11",
+      "summary": "Admin can set rate per kg for chicken in the system",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-12",
+      "summary": "Export reports to Excel/CSV from Admin Dashboard",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-15",
+      "summary": "Update the PDF export utility to ensure generated receipts include all required fields: unique barcode-style invoice number, customer name and ID, weight (kg), rate per kg, total price, payment made, payment type, remaining balance or CLEAR status, date and time, and shop name. Verify the receipt download button is accessible to both Admin and Staff roles in the TransactionList and ReceiptView components.",
+      "reqIds": [
+        "REQ-16"
+      ],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Smart Chicken Shop",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

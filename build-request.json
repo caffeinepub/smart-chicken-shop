@@ -1,0 +1,73 @@
+{
+  "kind": "build_request",
+  "title": "Review and confirm all existing features are fully implemented",
+  "projectName": "Smart Chicken Shop",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-17",
+      "text": "Verify and ensure the PDF export utility in frontend/src/utils/pdfExport.ts generates receipts that include all required fields: unique barcode-style invoice number, customer name and ID, weight (kg), rate per kg, total price, payment made, payment type, remaining balance or CLEAR status, date and time, and shop name. The receipt download button must be accessible to both Admin and Staff roles in TransactionList and ReceiptView components.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-4"
+        ],
+        "quotes": [
+          "Update the PDF export utility to ensure generated receipts include all required fields: unique barcode-style invoice number, customer name and ID, weight (kg), rate per kg, total price, payment made, payment type, remaining balance or CLEAR status, date and time, and shop name."
+        ]
+      },
+      "acceptanceCriteria": [
+        "PDF/printable receipt includes the barcode-style invoice number rendered visually",
+        "Receipt shows customer name and customer ID",
+        "Receipt shows weight in kg, rate per kg, and total price",
+        "Receipt shows payment amount made and payment type label",
+        "Receipt shows remaining balance or 'CLEAR' status",
+        "Receipt shows transaction date and time",
+        "Receipt shows shop name",
+        "Download/print receipt button is visible and functional for Admin role in TransactionList",
+        "Download/print receipt button is visible and functional for Staff role in TransactionList",
+        "Download/print receipt button is visible and functional in ReceiptView for both Admin and Staff"
+      ]
+    },
+    {
+      "id": "REQ-18",
+      "text": "Add a PDF export button to the Admin Dashboard reports section so Admin can download the currently filtered (daily, weekly, or monthly) transaction summary and customer balance list as a formatted PDF document directly from the frontend, without any backend changes.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-4"
+        ],
+        "quotes": [
+          "Export reports (PDF/Excel)",
+          "Export PDF & Excel"
+        ]
+      },
+      "acceptanceCriteria": [
+        "A 'Export PDF' button appears in the Admin Dashboard reports section alongside the existing CSV export button",
+        "Clicking the button generates and downloads a PDF containing the currently selected period's (daily/weekly/monthly) transaction summary metrics",
+        "The PDF includes the customer balance list with CLEAR/PENDING status for the selected period",
+        "The PDF export is only visible and accessible to Admin role",
+        "No backend changes are required — all PDF generation occurs on the frontend"
+      ]
+    }
+  ],
+  "constraints": [
+    "Do not modify any files listed in frontend.immutablePaths",
+    "All Motoko logic must remain in a single actor in backend/main.mo",
+    "SMS and WhatsApp notification delivery remain out of scope — in-app notifications only",
+    "Customers do not require login; they are identified by phone number only"
+  ],
+  "nonGoals": [
+    "SMS or WhatsApp notification delivery",
+    "Real-time WebSocket notifications",
+    "External database or cloud sync",
+    "Offline sync support",
+    "New backend schema changes for PDF export",
+    "New user roles beyond Admin and Staff",
+    "Customer login via Internet Identity"
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  }
+}

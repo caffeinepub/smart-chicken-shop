@@ -1,0 +1,27 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-28T06:42:42.423Z",
+  "summary": "The diff implements both REQ-17 and REQ-18. REQ-17 is addressed via updates to frontend/src/utils/pdfExport.ts (barcode-style invoice number, customer name/ID, weight, rate, total price, payment, payment type, balance/CLEAR status, date/time, shop name) and download buttons in both TransactionList and ReceiptView for Admin and Staff. REQ-18 is addressed via the new reportPdfExport.ts utility and the Export PDF button added to AdminDashboard.tsx alongside the existing CSV export. However, the AdminDashboard PDF export button does not appear to enforce Admin-only visibility — it is rendered unconditionally regardless of userRole.",
+  "missing_requirements": [
+    {
+      "id": "REQ-18",
+      "requirement": "The PDF export button in the Admin Dashboard reports section must be only visible and accessible to Admin role.",
+      "reason": "In AdminDashboard.tsx, the Export PDF button is rendered without any role guard. The component accepts a userRole prop but the button is not conditionally shown based on whether userRole === 'admin'. The AC explicitly states 'The PDF export is only visible and accessible to Admin role' but no such conditional rendering is present in the diff.",
+      "evidence": [
+        "frontend/src/components/AdminDashboard.tsx"
+      ]
+    }
+  ],
+  "hallucinated_features": [],
+  "confidence": 0.8,
+  "changed_files": [
+    "frontend-file-summaries.txt",
+    "frontend/src/components/AdminDashboard.tsx",
+    "frontend/src/components/ReceiptView.tsx",
+    "frontend/src/components/TransactionList.tsx",
+    "frontend/src/utils/pdfExport.ts",
+    "frontend/src/utils/reportPdfExport.ts",
+    "project_state.json"
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Review and confirm all existing features are fully implemented",
+  "requirements": [
+    {
+      "id": "REQ-17",
+      "summary": "Verify and ensure the PDF export utility generates complete receipts with all required fields including barcode-style invoice number, customer details, weight, pricing, payment info, balance status, timestamp, and shop name, accessible to both Admin and Staff roles",
+      "acceptanceCriteria": [
+        "PDF/printable receipt includes the barcode-style invoice number rendered visually",
+        "Receipt shows customer name and customer ID",
+        "Receipt shows weight in kg, rate per kg, and total price",
+        "Receipt shows payment amount made and payment type label",
+        "Receipt shows remaining balance or 'CLEAR' status",
+        "Receipt shows transaction date and time",
+        "Receipt shows shop name",
+        "Download/print receipt button is visible and functional for Admin role in TransactionList",
+        "Download/print receipt button is visible and functional for Staff role in TransactionList",
+        "Download/print receipt button is visible and functional in ReceiptView for both Admin and Staff"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/utils/pdfExport.ts",
+          "operation": "modify",
+          "description": "Review and update the PDF export utility to ensure it includes all required receipt fields: barcode-style invoice number (use the BarcodeInvoice component rendering logic), customer name and ID, weight (kg), rate per kg, total price, payment made, payment type label, remaining balance or CLEAR status, date and time, and shop name. Ensure the generated HTML includes proper styling for the barcode section and all field labels match the acceptance criteria."
+        },
+        {
+          "path": "frontend/src/components/TransactionList.tsx",
+          "operation": "modify",
+          "description": "Review the receipt download button in TransactionList to ensure it is visible and functional for both Admin and Staff roles. Verify that the button calls the PDF export utility correctly and is not restricted by role guards. If role-based visibility exists, ensure both Admin and Staff can access the download functionality."
+        },
+        {
+          "path": "frontend/src/components/ReceiptView.tsx",
+          "operation": "modify",
+          "description": "Review the receipt download/print button in ReceiptView to ensure it is visible and functional for both Admin and Staff roles. Verify that the button calls the PDF export utility correctly and displays all required fields from the transaction and customer data. Ensure the BarcodeInvoice component is properly integrated into the receipt layout."
+        }
+      ]
+    },
+    {
+      "id": "REQ-18",
+      "summary": "Add a PDF export button to the Admin Dashboard reports section to download the currently filtered (daily, weekly, or monthly) transaction summary and customer balance list as a formatted PDF document from the frontend",
+      "acceptanceCriteria": [
+        "A 'Export PDF' button appears in the Admin Dashboard reports section alongside the existing CSV export button",
+        "Clicking the button generates and downloads a PDF containing the currently selected period's (daily/weekly/monthly) transaction summary metrics",
+        "The PDF includes the customer balance list with CLEAR/PENDING status for the selected period",
+        "The PDF export is only visible and accessible to Admin role",
+        "No backend changes are required — all PDF generation occurs on the frontend"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/utils/reportPdfExport.ts",
+          "operation": "create",
+          "description": "Create a new frontend utility that generates and downloads a PDF report containing the currently selected period's (daily/weekly/monthly) transaction summary metrics (total sales, total payments, total balance, customer count) and a customer balance list showing each customer's name, ID, balance amount, and CLEAR/PENDING status. Use jsPDF or a similar PDF generation library compatible with the existing frontend stack. Format the report with a header showing the report period, shop name, and generation timestamp. Include tables for metrics and customer balances with proper styling and alignment."
+        },
+        {
+          "path": "frontend/src/components/AdminDashboard.tsx",
+          "operation": "modify",
+          "description": "Add an 'Export PDF' button next to the existing CSV export button in the Admin Dashboard reports section. Wire the button to call the new reportPdfExport utility from frontend/src/utils/reportPdfExport.ts, passing the current period (daily/weekly/monthly), filtered transaction data, customer list with balances, and summary metrics. Ensure the button is only visible to Admin role (verify existing role guards). The button should trigger PDF generation and download without any backend calls."
+        }
+      ]
+    }
+  ]
+}
